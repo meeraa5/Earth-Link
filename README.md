@@ -291,11 +291,6 @@ The Docker setup is ready for deployment:
 
 ---
 
-## License
-
-MIT
-
----
 
 ## Quick Reference
 
