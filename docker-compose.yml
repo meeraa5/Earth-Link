@@ -8,11 +8,11 @@ services:
       MYSQL_USER: earthlink
       MYSQL_PASSWORD: earthlink_password
     ports:
-      - "3307:3306"
+      - '3307:3306'
     volumes:
       - mysql_data:/var/lib/mysql
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost']
       timeout: 20s
       retries: 10
     restart: unless-stopped
@@ -22,8 +22,10 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: earthlink_web
+    command:
+      ['npm', 'run', 'dev', '--', '--hostname', '0.0.0.0', '--port', '3000']
     ports:
-      - "3000:3000"
+      - '3000:3000'
     environment:
       NODE_ENV: development
       DB_HOST: mysql
@@ -31,6 +33,12 @@ services:
       DB_USER: earthlink
       DB_PASSWORD: earthlink_password
       DB_NAME: earthlink_db
+      WATCHPACK_POLLING: 'true'
+      CHOKIDAR_USEPOLLING: 'true'
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
     develop:
       watch:
         - action: sync
@@ -41,14 +49,13 @@ services:
             - .next/
             - mysql_data/
             - docker/
-            - "**/*.log"
+            - '**/*.log'
     depends_on:
       mysql:
         condition: service_healthy
     restart: unless-stopped
     stdin_open: true
     tty: true
-
 
 volumes:
   mysql_data:
