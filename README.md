@@ -2,7 +2,7 @@
 
 A minimal MVP social posting web app built with Next.js 15 and MySQL.
 
-# Collaborators: Meera Vyas, Daniel Howard, Marvin Zhai, Tyler Fabela, Alan Xiao 
+### Collaborators: Meera Vyas, Daniel Howard, Marvin Zhai, Tyler Fabela, Alan Xiao 
 
 ## 🚀 Quick Start
 
